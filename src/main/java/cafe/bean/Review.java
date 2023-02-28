@@ -17,7 +17,7 @@ import java.util.Objects;
         private User userReview;
         @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "preorder_id")
-        private Preorder preorderId;
+        private Preorder preorder;
         @OneToMany(fetch = FetchType.LAZY)
         private List<Preorder> preorderIdd;
         @Column(name = "review")
@@ -39,12 +39,12 @@ import java.util.Objects;
             this.userReview = userReview;
         }
 
-        public Preorder getPreorderId() {
-            return preorderId;
+        public Preorder getPreorder() {
+            return preorder;
         }
 
-        public void setPreorderId(Preorder preorderId) {
-            this.preorderId = preorderId;
+        public void setPreorder(Preorder preorder) {
+            this.preorder = preorder;
         }
 
         public List<Preorder> getPreorderIdd() {
@@ -68,7 +68,7 @@ import java.util.Objects;
             return "Review{" +
                     "id=" + id +
                     ", userReview=" + userReview +
-                    ", preorderId=" + preorderId +
+                    ", preorder=" + preorder +
                     ", preorderIdd=" + preorderIdd +
                     ", review='" + review + '\'' +
                     '}';
@@ -79,13 +79,14 @@ import java.util.Objects;
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Review review1 = (Review) o;
-            return id == review1.id && Objects.equals(userReview, review1.userReview) && Objects.equals(preorderId, review1.preorderId) && Objects.equals(preorderIdd, review1.preorderIdd) && Objects.equals(review, review1.review);
+            return id == review1.id && Objects.equals(userReview, review1.userReview) && Objects.equals(preorder, review1.preorder) && Objects.equals(preorderIdd, review1.preorderIdd) && Objects.equals(review, review1.review);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, userReview, preorderId, preorderIdd, review);
+            return Objects.hash(id, userReview, preorder, preorderIdd, review);
         }
     }
+
 
 

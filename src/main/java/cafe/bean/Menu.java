@@ -7,7 +7,6 @@ import java.util.Objects;
     @Entity
     @Table(name = "Menu")
     public class Menu {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
@@ -24,20 +23,14 @@ import java.util.Objects;
         @Column(name = "points")
         private long points;
 
+
+
         public long getId() {
             return id;
         }
 
         public void setId(long id) {
             this.id = id;
-        }
-
-        public PreorderInfo getPreorderInf() {
-            return preorderInf;
-        }
-
-        public void setPreorderInf(PreorderInfo preorderInf) {
-            this.preorderInf = preorderInf;
         }
 
         public Category getCategoryId() {
@@ -76,7 +69,6 @@ import java.util.Objects;
         public String toString() {
             return "Menu{" +
                     "id=" + id +
-                    ", preorderInf=" + preorderInf +
                     ", categoryId=" + categoryId +
                     ", title='" + title + '\'' +
                     ", price=" + price +
@@ -89,12 +81,12 @@ import java.util.Objects;
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Menu menu = (Menu) o;
-            return id == menu.id && price == menu.price && points == menu.points && Objects.equals(preorderInf, menu.preorderInf) && Objects.equals(categoryId, menu.categoryId) && Objects.equals(title, menu.title);
+            return id == menu.id && price == menu.price && points == menu.points && Objects.equals(categoryId, menu.categoryId) && Objects.equals(title, menu.title);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, preorderInf, categoryId, title, price, points);
+            return Objects.hash(id, categoryId, title, price, points);
         }
     }
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ</title>
+
+<body>
+<title>Заказ</title>
+<div th:switch="${preorder}">
+    <h2 th:case="null">No found!</h2>
+    <div th:case="*">
+        <h2>Заказ</h2>
+        <table>
+            <thead>
+            <th>Id</th>
+            <th>User</th>
+            <th>Time</th>
+            <th>OrderSum</th>
+            <th>PayType</th>
+            </thead>
+
+            <tr th:each="preorder1 : ${preorder}">
+                <td th:text="${preorder1.id}"></td>
+                <td th:text="${preorder1.user.name}"></td>
+                <td th:text="${preorder1.preorderTime}"></td>
+                <td th:text="${preorder1.preorderSum}"></td>
+                <td th:text="${preorder1.preorderType}"></td>
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

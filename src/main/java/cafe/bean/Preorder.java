@@ -1,6 +1,7 @@
 package cafe.bean;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,19 +13,19 @@ public class Preorder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @OneToOne(mappedBy = "preorderId")
+    @OneToOne(mappedBy = "preorder")
     private Review preorderReview;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "preorderId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "preorder")
     private List<PreorderInfo> preorderInfo;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "preorder_time") // заменю тип немного позже
-    private long preorderTime;
+    private LocalDate preorderTime;
     @Column(name = "preorder_sum")
     private long preorderSum;
     @Column(name = "preorder_type")
-    private long preorderType;
+    private String preorderType;
 
     public long getId() {
         return id;
@@ -42,12 +43,12 @@ public class Preorder {
         this.preorderReview = preorderReview;
     }
 
-    public List<PreorderInfo> getPreorderInfoo() {
+    public List<PreorderInfo> getPreorderInfo() {
         return preorderInfo;
     }
 
-    public void setPreorderInfoo(List<PreorderInfo> preorderInfoo) {
-        this.preorderInfo = preorderInfoo;
+    public void setPreorderInfo(List<PreorderInfo> preorderInfo) {
+        this.preorderInfo = preorderInfo;
     }
 
     public User getUser() {
@@ -58,11 +59,11 @@ public class Preorder {
         this.user = user;
     }
 
-    public long getPreorderTime() {
+    public LocalDate getPreorderTime() {
         return preorderTime;
     }
 
-    public void setPreorderTime(long preorderTime) {
+    public void setPreorderTime(LocalDate preorderTime) {
         this.preorderTime = preorderTime;
     }
 
@@ -70,15 +71,15 @@ public class Preorder {
         return preorderSum;
     }
 
-    public void setPreorderSum(long prorderSum) {
-        this.preorderSum = prorderSum;
+    public void setPreorderSum(long preorderSum) {
+        this.preorderSum = preorderSum;
     }
 
-    public long getPreorderType() {
+    public String getPreorderType() {
         return preorderType;
     }
 
-    public void setPreorderType(long preorderType) {
+    public void setPreorderType(String preorderType) {
         this.preorderType = preorderType;
     }
 

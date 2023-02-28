@@ -18,7 +18,7 @@ import java.util.Objects;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "preorder_id")
-        private Preorder preorderId;
+        private Preorder preorder;
 
         @Column(name = "review")
         private String review;
@@ -39,12 +39,12 @@ import java.util.Objects;
             this.menuId = menuId;
         }
 
-        public Preorder getPreorderId() {
-            return preorderId;
+        public Preorder getPreorder() {
+            return preorder;
         }
 
-        public void setPreorderId(Preorder preorderId) {
-            this.preorderId = preorderId;
+        public void setPreorder(Preorder preorder) {
+            this.preorder = preorder;
         }
 
         public String getReview() {
@@ -60,7 +60,7 @@ import java.util.Objects;
             return "PreorderInfo{" +
                     "id=" + id +
                     ", menuId=" + menuId +
-                    ", preorderId=" + preorderId +
+                    ", preorder=" + preorder +
                     ", review='" + review + '\'' +
                     '}';
         }
@@ -70,11 +70,11 @@ import java.util.Objects;
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             PreorderInfo that = (PreorderInfo) o;
-            return id == that.id && Objects.equals(menuId, that.menuId) && Objects.equals(preorderId, that.preorderId) && Objects.equals(review, that.review);
+            return id == that.id && Objects.equals(menuId, that.menuId) && Objects.equals(preorder, that.preorder) && Objects.equals(review, that.review);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, menuId, preorderId, review);
+            return Objects.hash(id, menuId, preorder, review);
         }
     }

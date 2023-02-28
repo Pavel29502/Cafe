@@ -9,14 +9,14 @@
 <div th:switch="${users}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
-        <h2>users</h2>
+        <h2>Клиенты нашего кафе</h2>
         <table>
             <thead>
                 <th>Id</th>
-                <th>name</th>
-                <th>login</th>
-                <th>pass</th>
-                <th>email</th>
+                <th>Name</th>
+                <th>Login</th>
+                <th>Pass</th>
+                <th>Email</th>
             </thead>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
@@ -30,6 +30,12 @@
             </tr>
         </table>
 </div>
+<!--                    <td><a th:href="@{userUpdate/{id}(id=${users.id})}">Edit</a></td>-->
+<!--    <td><a th:href="@{userDelete/{id}(id=${user.id})}">Delete</a></td>-->
+<p><a href="/user-create">Создать клиента</a></p>
+    <p><a href="/user-delete/{id}">Удалить клиента</a></p>
+    <p><a href="/menu-create">Сделать заказ</a></p>
+
 </div>
 </body>
 </html>
