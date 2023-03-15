@@ -15,11 +15,11 @@ import java.util.Objects;
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id")
         private User userReview;
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "preorder_id")
-        private Preorder preorder;
-        @OneToMany(fetch = FetchType.LAZY)
-        private List<Preorder> preorderIdd;
+//        @OneToOne(fetch = FetchType.LAZY)
+//        @JoinColumn(name = "preorder_id")
+//        private Preorder preorder;
+//        @OneToMany(fetch = FetchType.LAZY)
+//        private List<Preorder> preorderIdd;
         @Column(name = "review")
         private String review;
 
@@ -39,22 +39,6 @@ import java.util.Objects;
             this.userReview = userReview;
         }
 
-        public Preorder getPreorder() {
-            return preorder;
-        }
-
-        public void setPreorder(Preorder preorder) {
-            this.preorder = preorder;
-        }
-
-        public List<Preorder> getPreorderIdd() {
-            return preorderIdd;
-        }
-
-        public void setPreorderIdd(List<Preorder> preorderIdd) {
-            this.preorderIdd = preorderIdd;
-        }
-
         public String getReview() {
             return review;
         }
@@ -68,8 +52,6 @@ import java.util.Objects;
             return "Review{" +
                     "id=" + id +
                     ", userReview=" + userReview +
-                    ", preorder=" + preorder +
-                    ", preorderIdd=" + preorderIdd +
                     ", review='" + review + '\'' +
                     '}';
         }
@@ -79,12 +61,12 @@ import java.util.Objects;
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Review review1 = (Review) o;
-            return id == review1.id && Objects.equals(userReview, review1.userReview) && Objects.equals(preorder, review1.preorder) && Objects.equals(preorderIdd, review1.preorderIdd) && Objects.equals(review, review1.review);
+            return id == review1.id && Objects.equals(userReview, review1.userReview) && Objects.equals(review, review1.review);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, userReview, preorder, preorderIdd, review);
+            return Objects.hash(id, userReview, review);
         }
     }
 

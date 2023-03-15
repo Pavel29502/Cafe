@@ -8,24 +8,30 @@ import java.util.Objects;
 @Entity
 @Table(name = "Preorder")
 public class Preorder {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @OneToOne(mappedBy = "preorder")
-    private Review preorderReview;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "preorder")
-    private List<PreorderInfo> preorderInfo;
+//    @OneToOne(mappedBy = "preorder")
+//    private Review preorderReview;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "preorder")
+//    private List<PreorderInfo> preorderInfo;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User userId;
+
     @Column(name = "preorder_time") // заменю тип немного позже
     private LocalDate preorderTime;
-    @Column(name = "preorder_sum")
-    private long preorderSum;
-    @Column(name = "preorder_type")
-    private String preorderType;
+//    @Column(name = "preorder_sum")
+//    private long preorderSum;
+//    @Column(name = "preorder_type")
+//    private String preorderType;
+    @Column(name = "quantity")
+    private long quantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "menu_id")
+    private Menu menuId;
 
     public long getId() {
         return id;
@@ -35,28 +41,12 @@ public class Preorder {
         this.id = id;
     }
 
-    public Review getPreorderReview() {
-        return preorderReview;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setPreorderReview(Review preorderReview) {
-        this.preorderReview = preorderReview;
-    }
-
-    public List<PreorderInfo> getPreorderInfo() {
-        return preorderInfo;
-    }
-
-    public void setPreorderInfo(List<PreorderInfo> preorderInfo) {
-        this.preorderInfo = preorderInfo;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public LocalDate getPreorderTime() {
@@ -67,32 +57,30 @@ public class Preorder {
         this.preorderTime = preorderTime;
     }
 
-    public long getPreorderSum() {
-        return preorderSum;
+    public long getQuantity() {
+        return quantity;
     }
 
-    public void setPreorderSum(long preorderSum) {
-        this.preorderSum = preorderSum;
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
     }
 
-    public String getPreorderType() {
-        return preorderType;
+    public Menu getMenuId() {
+        return menuId;
     }
 
-    public void setPreorderType(String preorderType) {
-        this.preorderType = preorderType;
+    public void setMenuId(Menu menuId) {
+        this.menuId = menuId;
     }
 
     @Override
     public String toString() {
         return "Preorder{" +
                 "id=" + id +
-                ", preorderReview=" + preorderReview +
-                ", preorderInfo=" + preorderInfo +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", preorderTime=" + preorderTime +
-                ", preorderSum=" + preorderSum +
-                ", preorderType=" + preorderType +
+                ", quantity=" + quantity +
+                ", menuId=" + menuId +
                 '}';
     }
 
@@ -101,11 +89,11 @@ public class Preorder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Preorder preorder = (Preorder) o;
-        return id == preorder.id && preorderTime == preorder.preorderTime && preorderSum == preorder.preorderSum && preorderType == preorder.preorderType && Objects.equals(preorderReview, preorder.preorderReview) && Objects.equals(preorderInfo, preorder.preorderInfo) && Objects.equals(user, preorder.user);
+        return id == preorder.id && quantity == preorder.quantity && Objects.equals(userId, preorder.userId) && Objects.equals(preorderTime, preorder.preorderTime) && Objects.equals(menuId, preorder.menuId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, preorderReview, preorderInfo, user, preorderTime, preorderSum, preorderType);
+        return Objects.hash(id, userId, preorderTime, quantity, menuId);
     }
 }

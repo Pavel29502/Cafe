@@ -6,16 +6,16 @@ import java.util.Objects;
     @Entity
     @Table(name = "Category")
     public class Category {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
         private long id;
 
-        @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryId")
-        private List<Menu> categoryMenu;
-        @Column(name = "category")
-        private String category;
+        @Column(name = "name")
+        private String name;
+        //убрать
+//        @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+//        private List<Menu> menuList;
 
         public long getId() {
             return id;
@@ -25,28 +25,19 @@ import java.util.Objects;
             this.id = id;
         }
 
-        public List<Menu> getCategoryMenu() {
-            return categoryMenu;
+        public String getName() {
+            return name;
         }
 
-        public void setCategoryMenu(List<Menu> categoryMenu) {
-            this.categoryMenu = categoryMenu;
-        }
-
-        public String getCategory() {
-            return category;
-        }
-
-        public void setCategory(String category) {
-            this.category = category;
+        public void setName(String name) {
+            this.name = name;
         }
 
         @Override
         public String toString() {
             return "Category{" +
                     "id=" + id +
-                    ", categoryMenu=" + categoryMenu +
-                    ", category='" + category + '\'' +
+                    ", name='" + name + '\'' +
                     '}';
         }
 
@@ -54,13 +45,14 @@ import java.util.Objects;
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            Category category1 = (Category) o;
-            return id == category1.id && Objects.equals(categoryMenu, category1.categoryMenu) && Objects.equals(category, category1.category);
+            Category category = (Category) o;
+            return id == category.id && Objects.equals(name, category.name);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, categoryMenu, category);
+            return Objects.hash(id, name);
         }
     }
+
 

@@ -11,18 +11,21 @@ import java.util.Objects;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
         private long id;
-        @ManyToOne(fetch = FetchType.LAZY)
-        private PreorderInfo preorderInf;
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "category_id")
-        private Category categoryId;
+//        @ManyToOne(fetch = FetchType.LAZY)
+//        private PreorderInfo preorderInf;
+        //new
+//        @ManyToOne(fetch = FetchType.EAGER)
+//        @JoinColumn(name = "category_id")
+//      private Category category = new Category();
+//        private Category categoryId;
         @Column(name = "title")
         private String title;
+        @Column(name = "description_product")
+        private String description;
         @Column(name = "price")
         private long price;
-        @Column(name = "points")
-        private long points;
-
+//        @Column(name = "points")
+//        private long points;
 
 
         public long getId() {
@@ -33,20 +36,20 @@ import java.util.Objects;
             this.id = id;
         }
 
-        public Category getCategoryId() {
-            return categoryId;
-        }
-
-        public void setCategoryId(Category categoryId) {
-            this.categoryId = categoryId;
-        }
-
         public String getTitle() {
             return title;
         }
 
         public void setTitle(String title) {
             this.title = title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public long getPrice() {
@@ -57,22 +60,13 @@ import java.util.Objects;
             this.price = price;
         }
 
-        public long getPoints() {
-            return points;
-        }
-
-        public void setPoints(long points) {
-            this.points = points;
-        }
-
         @Override
         public String toString() {
             return "Menu{" +
                     "id=" + id +
-                    ", categoryId=" + categoryId +
                     ", title='" + title + '\'' +
+                    ", description='" + description + '\'' +
                     ", price=" + price +
-                    ", points=" + points +
                     '}';
         }
 
@@ -81,12 +75,12 @@ import java.util.Objects;
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Menu menu = (Menu) o;
-            return id == menu.id && price == menu.price && points == menu.points && Objects.equals(categoryId, menu.categoryId) && Objects.equals(title, menu.title);
+            return id == menu.id && price == menu.price && Objects.equals(title, menu.title) && Objects.equals(description, menu.description);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, categoryId, title, price, points);
+            return Objects.hash(id, title, description, price);
         }
     }
 

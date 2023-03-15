@@ -3,6 +3,7 @@ package cafe.service;
 import cafe.bean.Category;
 import cafe.bean.Menu;
 import cafe.exception.BaseException;
+import cafe.repository.CategoryRepository;
 import cafe.repository.MenuRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,13 @@ import java.util.List;
 public class MenuService {
     private final MenuRepository menuRepository;
     private final CategoryService categoryService;
+    private final CategoryRepository categoryRepository;
 
-    public MenuService(MenuRepository menuRepository, CategoryService categoryService) {
+    public MenuService(MenuRepository menuRepository, CategoryService categoryService,
+                       CategoryRepository categoryRepository) {
         this.menuRepository = menuRepository;
         this.categoryService = categoryService;
+        this.categoryRepository = categoryRepository;
     }
     public List<Menu> findAll() {
         return menuRepository.findAll();
@@ -24,15 +28,16 @@ public class MenuService {
         return menuRepository.findByTitle(title);
     }
 
+
     public void saveMenu(Menu menu) {
-        Category category = new Category();
-
-        category.setCategory("pivas");
-        categoryService.saveCategory(category);
-        menu.setCategoryId(category);
         menuRepository.save(menu);
-
     }
+
+//    public void saveMenu(Menu menu, Long id) {
+//       Category category = categoryService.findById(id);
+//        menu.setCategoryId(category);
+//        menuRepository.save(menu);
+//    }
 
     public Menu getMenuById(Long id) {
         return menuRepository.findById(id).orElseThrow(

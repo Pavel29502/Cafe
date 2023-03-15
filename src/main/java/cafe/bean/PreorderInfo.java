@@ -12,13 +12,13 @@ import java.util.Objects;
         @Column(name = "id")
         private long id;
 
-        @OneToMany(fetch = FetchType.LAZY)
-        @JoinColumn(name = "menu_id")
-        private List<Menu> menuId;
-
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "preorder_id")
-        private Preorder preorder;
+//        @OneToMany(fetch = FetchType.LAZY)
+////        @JoinColumn(name = "menu_id")
+////        private List<Menu> menuId;
+//
+////        @ManyToOne(fetch = FetchType.LAZY)
+////        @JoinColumn(name = "preorder_id")
+////        private Preorder preorder;
 
         @Column(name = "review")
         private String review;
@@ -29,22 +29,6 @@ import java.util.Objects;
 
         public void setId(long id) {
             this.id = id;
-        }
-
-        public List<Menu> getMenuId() {
-            return menuId;
-        }
-
-        public void setMenuId(List<Menu> menuId) {
-            this.menuId = menuId;
-        }
-
-        public Preorder getPreorder() {
-            return preorder;
-        }
-
-        public void setPreorder(Preorder preorder) {
-            this.preorder = preorder;
         }
 
         public String getReview() {
@@ -59,8 +43,6 @@ import java.util.Objects;
         public String toString() {
             return "PreorderInfo{" +
                     "id=" + id +
-                    ", menuId=" + menuId +
-                    ", preorder=" + preorder +
                     ", review='" + review + '\'' +
                     '}';
         }
@@ -70,11 +52,11 @@ import java.util.Objects;
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             PreorderInfo that = (PreorderInfo) o;
-            return id == that.id && Objects.equals(menuId, that.menuId) && Objects.equals(preorder, that.preorder) && Objects.equals(review, that.review);
+            return id == that.id && Objects.equals(review, that.review);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, menuId, preorder, review);
+            return Objects.hash(id, review);
         }
     }

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>User update</title>
+</head>
+<body>
+<form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="name">name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Введите имя">
+    <br/>
+    <label for="login">login</label>
+    <input type="text" th:field="*{login}" id="login" placeholder="Введите  login">
+    <br/>
+    <label for="pass">password</label>
+    <input type="pass" th:field="*{pass}" id="pass" placeholder="Введите password">
+    <br/>
+    <label for="email">email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Введите email">
+    <br/>
+    <label for="role">role</label>
+    <input readonly type="text" th:field="*{role}" id="role" placeholder="Введите role">
+    <br/>
+    <label for="points">points</label>
+    <input type="text" th:field="*{points}" id="points" placeholder="Введите role">
+    <br/>
+    <input type="submit" value="Update User">
+</form>
+</body>
+</html>
