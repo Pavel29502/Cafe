@@ -1,7 +1,7 @@
 package cafe.bean;
 
 import javax.persistence.*;
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Objects;
 
     @Entity
@@ -23,7 +23,7 @@ import java.util.Objects;
         @Column(name = "description_product")
         private String description;
         @Column(name = "price")
-        private long price;
+        private BigDecimal price;
 //        @Column(name = "points")
 //        private long points;
 
@@ -52,11 +52,11 @@ import java.util.Objects;
             this.description = description;
         }
 
-        public long getPrice() {
+        public BigDecimal getPrice() {
             return price;
         }
 
-        public void setPrice(long price) {
+        public void setPrice(BigDecimal price) {
             this.price = price;
         }
 

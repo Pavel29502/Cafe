@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>User update</title>
+</head>
+<body>
+<form action="#" th:action="@{/menu-update}" th:object="${menu}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <label for="title">Название продукта</label>
+    <input type="text" th:field="*{title}" id="title" placeholder="Изменить название">
+    <br/>
+    <label for="description">Описание продукта</label>
+    <input type="text" th:field="*{description}" id="description" placeholder="Изменить описание">
+    <br/>
+
+    <input type="submit" value="Update Category">
+</form>
+</body>
+</html>

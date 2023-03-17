@@ -25,11 +25,12 @@ public class MenuController {
 //        this.preorderInfoRepository = preorderInfoRepository;
     }
 
-    @GetMapping("/menu")
-    public String findAll(Model model) {
+    @GetMapping("/menu/{id}")
+    public String findAll(Model model,
+                          @PathVariable("id") long orderId) {
         List<Menu> findProduct = menuService.findAll();
         model.addAttribute("menu", findProduct);
-//        model.addAttribute()
+        model.addAttribute("orderId", orderId);
         return "menu/menu-list";
     }
 
@@ -41,8 +42,26 @@ public class MenuController {
     @PostMapping("/menu-create")
     public String createMenu(Menu menu) {
         menuService.saveMenu(menu);
-        return "redirect:/menu";
+        return "redirect:/menu/0";
 
+    }
+
+    @GetMapping("/menu/menu-update/{id}")
+    public String updateMenuForm(@PathVariable("id") Long id, Model model) {
+        Menu menu = menuService.getMenuById(id);
+        model.addAttribute("menu", menu);
+        return "menu/menu-update";
+    }
+    @PostMapping("/menu-update")
+    public String updateCategory(Menu menu){
+        menuService.saveMenu(menu);
+        return "redirect:/menu/0";
+    }
+
+    @GetMapping("/menu/menu-delete/{id}")
+    public String deleteMenu(@PathVariable("id") Long id) {
+        menuService.deleteById(id);
+        return "redirect:/menu/0";
     }
 }
 

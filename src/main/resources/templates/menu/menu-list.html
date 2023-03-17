@@ -16,7 +16,7 @@
             <th>Title</th>
 <!--            <th>Points</th>-->
             <th>Description</th>
-            <th>category_id  - > в РАЗРАБОТКЕ</th>
+<!--            <th>category_id  - > в РАЗРАБОТКЕ</th>-->
             </thead>
 
             <tr th:each="product : ${menu}">
@@ -26,7 +26,9 @@
                 <td th:text="${product.description}"></td>
 <!--                <td th:text="${product.categoryId.name}"></td>-->
 
-<!--                <td><a th:href="@{order/{id}(id=${product.id})}">Заказать</a></td>&ndash;&gt;-->
+                <td><a th:href="@{menu/order/{id}/1(id=${product.id})}">Заказать</a></td>-->
+                <td><a th:href="@{menu-delete/{id}(id=${product.id})}">Delete</a></td>
+                <td><a th:href="@{menu-update/{id}(id=${product.id})}">Edit</a></td>
             </tr>
         </table>
     </div>
@@ -34,10 +36,6 @@
 <form action="/menu-create">
     <button type="submit"> Создать продукт </button>
 </form>
-
-<!--<form action="/menu-create">-->
-<!--    <button type="submit"> Добавить продукт к заказу </button>-->
-<!--</form>-->
 
 <form action="/client">
     <button type="submit"> Вернуться назад </button>

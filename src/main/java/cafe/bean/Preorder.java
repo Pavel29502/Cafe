@@ -1,6 +1,9 @@
 package cafe.bean;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -22,16 +25,25 @@ public class Preorder {
 
     @Column(name = "preorder_time") // заменю тип немного позже
     private LocalDate preorderTime;
-//    @Column(name = "preorder_sum")
-//    private long preorderSum;
-//    @Column(name = "preorder_type")
-//    private String preorderType;
+    @Column(name = "preorder_sum")
+   private BigDecimal preorderSum;
+    @Column(name = "preorder_type")
+    @Enumerated(EnumType.STRING)
+    private OrderType preorderType;
     @Column(name = "quantity")
     private long quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "menu_id")
-    private Menu menuId;
+    @OneToMany(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Menu> menu;
+
+    public OrderType getPreorderType() {
+        return preorderType;
+    }
+
+    public void setPreorderType(OrderType preorderType) {
+        this.preorderType = preorderType;
+    }
 
     public long getId() {
         return id;
@@ -57,6 +69,14 @@ public class Preorder {
         this.preorderTime = preorderTime;
     }
 
+    public BigDecimal getPreorderSum() {
+        return preorderSum;
+    }
+
+    public void setPreorderSum(BigDecimal preorderSum) {
+        this.preorderSum = preorderSum;
+    }
+
     public long getQuantity() {
         return quantity;
     }
@@ -65,12 +85,12 @@ public class Preorder {
         this.quantity = quantity;
     }
 
-    public Menu getMenuId() {
-        return menuId;
+    public List<Menu> getMenu() {
+        return menu;
     }
 
-    public void setMenuId(Menu menuId) {
-        this.menuId = menuId;
+    public void setMenu(List<Menu> menu) {
+        this.menu = menu;
     }
 
     @Override
@@ -80,7 +100,7 @@ public class Preorder {
                 ", userId=" + userId +
                 ", preorderTime=" + preorderTime +
                 ", quantity=" + quantity +
-                ", menuId=" + menuId +
+                ", menuId=" + menu +
                 '}';
     }
 
@@ -89,11 +109,11 @@ public class Preorder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Preorder preorder = (Preorder) o;
-        return id == preorder.id && quantity == preorder.quantity && Objects.equals(userId, preorder.userId) && Objects.equals(preorderTime, preorder.preorderTime) && Objects.equals(menuId, preorder.menuId);
+        return id == preorder.id && quantity == preorder.quantity && Objects.equals(userId, preorder.userId) && Objects.equals(preorderTime, preorder.preorderTime) && Objects.equals(menu, preorder.menu);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, preorderTime, quantity, menuId);
+        return Objects.hash(id, userId, preorderTime, quantity, menu);
     }
 }

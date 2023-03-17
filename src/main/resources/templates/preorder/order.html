@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<title>Заказ</title>
+<title>Заказ </title>
 <div th:switch="${preorder}">
     <h2 th:case="null">No found!</h2>
     <div th:case="*">
@@ -17,18 +17,31 @@
             <th>Id</th>
             <th>User</th>
             <th>Time</th>
-            <th>OrderSum</th>
             <th>PayType</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
             </thead>
 
-            <tr th:each="preorder1 : ${preorder}">
-                <td th:text="${preorder1.id}"></td>
-                <td th:text="${preorder1.user.name}"></td>
-                <td th:text="${preorder1.preorderTime}"></td>
-                <td th:text="${preorder1.preorderSum}"></td>
-                <td th:text="${preorder1.preorderType}"></td>
+           <tr th:each="preorder1 : ${menu}">
+                <td th:text="${preorder.id}"></td>
+                <td th:text="${preorder.userId.name}"></td>
+                <td th:text="${preorder.preorderTime}"></td>
+                <td th:text="${preorder.preorderType}"></td>
+                <td th:text="${preorder1.title}"></td>
+                <td th:text="${preorder1.description}"></td>
+                <td th:text="${preorder1.price}"></td>
+               <td><a th:href="@{/menu/{id}/order-delete/1(id=${preorder1.id})}">Delete</a></td>
+
 
             </tr>
+            <th>OrderSum</th>
+            <td th:text="${preorder.preorderSum}"></td>
+
+
+            <td><a th:href="@{/menu-list}">Вернутся в список продуктов</a></td>
+
+
         </table>
     </div>
 </div>
