@@ -26,8 +26,6 @@ import java.util.Objects;
         private BigDecimal price;
 //        @Column(name = "points")
 //        private long points;
-
-
         public long getId() {
             return id;
         }

@@ -26,7 +26,7 @@ public class Preorder {
     @Column(name = "preorder_time") // заменю тип немного позже
     private LocalDate preorderTime;
     @Column(name = "preorder_sum")
-   private BigDecimal preorderSum;
+    private BigDecimal preorderSum;
     @Column(name = "preorder_type")
     @Enumerated(EnumType.STRING)
     private OrderType preorderType;

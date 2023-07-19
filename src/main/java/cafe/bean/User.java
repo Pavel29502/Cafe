@@ -23,12 +23,13 @@ public class User {
     private String pass;
     @Column(name = "email")
     private String email;
-    @Column(name = "user_role")
-    private String role;
+//    @Column(name = "user_role")
+//    private String role;
 //    @Column(name = "points")
 //    private long points;
 //    @Column(name = "ban")
 //    private boolean ban;
+
 
     public long getId() {
         return id;
@@ -70,14 +71,6 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -86,7 +79,6 @@ public class User {
                 ", login='" + login + '\'' +
                 ", pass='" + pass + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
                 '}';
     }
 
@@ -95,11 +87,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(login, user.login) && Objects.equals(pass, user.pass) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(login, user.login) && Objects.equals(pass, user.pass) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, login, pass, email, role);
+        return Objects.hash(id, name, login, pass, email);
     }
 }
+

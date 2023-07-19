@@ -1,12 +1,9 @@
 package cafe.service;
-
-import cafe.bean.Category;
 import cafe.bean.Menu;
 import cafe.exception.BaseException;
 import cafe.repository.CategoryRepository;
 import cafe.repository.MenuRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -49,7 +46,6 @@ public class MenuService {
 //        category.setId(1);
 //        menu.setCategoryId(category);
 //        return menuRepository.save(menu);
-
 
 //      записываем через код.... ...
 

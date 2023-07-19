@@ -1,28 +1,27 @@
 package cafe.controller;
-
-import cafe.bean.Category;
 import cafe.bean.Menu;
+import cafe.repository.MenuRepository;
 import cafe.service.CategoryService;
 import cafe.service.MenuService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import static java.awt.SystemColor.menu;
+
 @Controller
 public class MenuController {
 
     private final MenuService menuService;
     private final CategoryService categoryService;
+    private final MenuRepository menuRepository;
 //    private final PreorderInfoRepository preorderInfoRepository;
 
-    public MenuController(MenuService menuService, CategoryService categoryService) {
+    public MenuController(MenuService menuService, CategoryService categoryService,
+                          MenuRepository menuRepository) {
         this.menuService = menuService;
         this.categoryService = categoryService;
 //        this.preorderInfoRepository = preorderInfoRepository;
+        this.menuRepository = menuRepository;
     }
 
     @GetMapping("/menu/{id}")
@@ -46,22 +45,33 @@ public class MenuController {
 
     }
 
-    @GetMapping("/menu/menu-update/{id}")
+//    @GetMapping("/menu/menu-update/{id}")
+    @GetMapping("/menu-update/{id}")
     public String updateMenuForm(@PathVariable("id") Long id, Model model) {
-        Menu menu = menuService.getMenuById(id);
+//        Menu menu = menuService.getMenuById(id);
+        Menu menu = menuRepository.findById(id).get();
+        System.out.println("GET MENU="+menu);
         model.addAttribute("menu", menu);
         return "menu/menu-update";
     }
-    @PostMapping("/menu-update")
-    public String updateCategory(Menu menu){
-        menuService.saveMenu(menu);
-        return "redirect:/menu/0";
+//    @PostMapping("/menu-update")
+//    public String updateCategory(Menu menu){
+//        menuService.saveMenu(menu);
+//        return "redirect:/menu/0";
+//    }
+
+    @PostMapping("/menu-update/{id}")
+    public String updateCategory(@PathVariable("id") Long id, @ModelAttribute("menu") Menu menu){
+        menu.setId(id);
+        menuRepository.save(menu);
+        //menuService.saveMenu(menu);
+        return "redirect:/menu-list";
     }
 
-    @GetMapping("/menu/menu-delete/{id}")
+    @GetMapping("/menu-delete/{id}")
     public String deleteMenu(@PathVariable("id") Long id) {
         menuService.deleteById(id);
-        return "redirect:/menu/0";
+        return "redirect:/menu-list";
     }
 }
 

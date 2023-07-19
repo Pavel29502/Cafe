@@ -4,10 +4,6 @@ import cafe.bean.Category;
 import cafe.exception.BaseException;
 import cafe.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -39,6 +35,10 @@ public class CategoryService {
                 () -> new BaseException("NotFound category with id " + id));
     }
 }
+
+
+
+
 
 
 //    @GetMapping("/category-update/{id}")

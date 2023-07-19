@@ -1,15 +1,11 @@
 package cafe.service;
-
 import cafe.bean.Menu;
 import cafe.bean.OrderType;
 import cafe.bean.Preorder;
-
 import cafe.bean.User;
-
 import cafe.exception.BaseException;
 import cafe.repository.PreorderRepository;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,20 +14,16 @@ import java.util.Optional;
 
 @Service
 public class PreorderService {
-
 private final PreorderRepository preorderRepository;
 private final MenuService menuService;
 private final UserService userService;
-//private final PreorderInfoRepository preorderInfoRepository;
 
 public PreorderService(PreorderRepository preorderRepository, MenuService menuService, UserService userService) {
     this.preorderRepository = preorderRepository;
     this.menuService = menuService;
     this.userService = userService;
 ////    this.preorderInfoRepository = preorderInfoRepository;
-
 }
-
     public Preorder saveOrder(Long orderId, Long menuId) {
         User user = userService.findById(1L);
         Menu menu = menuService.getMenuById(menuId);
@@ -57,18 +49,14 @@ public PreorderService(PreorderRepository preorderRepository, MenuService menuSe
             preorderRepository.saveAndFlush(firstOrder);
             return firstOrder;
         }
-
     }
-
     private BigDecimal getAllSum(List<Menu> menuList) {
         BigDecimal result = new BigDecimal(0);
         for (Menu sum: menuList) {
             result = result.add(sum.getPrice());
         }
         return result;
-
     }
-
     public Preorder deleteProductFromOrder(Long menuId, Long orderId) {
         Optional<Preorder> order = preorderRepository.findById(orderId);
         Menu menu = menuService.getMenuById(menuId);

@@ -13,10 +13,11 @@
         <table>
             <thead>
             <th>Id</th>
-            <th>Title</th>
+            <th>Название</th>
 <!--            <th>Points</th>-->
-            <th>Description</th>
+            <th>Описание продукта</th>
 <!--            <th>category_id  - > в РАЗРАБОТКЕ</th>-->
+            <th>Стоимость</th>
             </thead>
 
             <tr th:each="product : ${menu}">
@@ -24,6 +25,8 @@
                 <td th:text="${product.title}"></td>
 <!--                <td th:text="${product.points}"></td>-->
                 <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+
 <!--                <td th:text="${product.categoryId.name}"></td>-->
 
                 <td><a th:href="@{menu/order/{id}/1(id=${product.id})}">Заказать</a></td>-->
@@ -37,7 +40,7 @@
     <button type="submit"> Создать продукт </button>
 </form>
 
-<form action="/client">
+<form action="/admin">
     <button type="submit"> Вернуться назад </button>
 </form>
 </body>

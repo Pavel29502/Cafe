@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
-<title>User update</title>
+<title>Menu update</title>
 </head>
 <body>
-<form action="#" th:action="@{/menu-update}" th:object="${menu}" method="post">
+<form action="#" th:action="@{/menu-update/{id}(id=${menu.getId()})}" th:object="${menu}" method="post">
+<!--    th:action="@{/admin/product/edit/{id}(id=${editProduct.getId()})}">-->
     <label for="id">ID</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
     <label for="title">Название продукта</label>
     <input type="text" th:field="*{title}" id="title" placeholder="Изменить название">
     <br/>
     <label for="description">Описание продукта</label>
     <input type="text" th:field="*{description}" id="description" placeholder="Изменить описание">
     <br/>
+    <label for="price">Стоимость продукта</label>
+    <input type="number" th:field="*{price}" id="price" placeholder="Изменить стоимость">
 
-    <input type="submit" value="Update Category">
+    <input type="submit" value="Update Menu">
+
+
 </form>
 </body>
 </html>
